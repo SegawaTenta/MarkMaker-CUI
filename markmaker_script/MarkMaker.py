@@ -2,12 +2,14 @@
 
 import os
 import argparse
+from markmaker_script.__init__ import __version__
 # from datetime import datetime
 # import tracemalloc
 
 class MarkMaker(object):
     def __init__(self):
-        self.parser = argparse.ArgumentParser(description='MarkMaker pipeline 2023/4/3')
+        self.parser = argparse.ArgumentParser(description='MarkMaker version {}'.format(__version__))
+        self.parser.usage=('MarkMaker -w <target_SNP_selection/ARMS_preparation/tri_ARMS/tetra_ARMS/CAPS>')
         self.parser.add_argument('-w','--work',
                             required=True,
                             type=str,
@@ -257,24 +259,24 @@ class MarkMaker(object):
     def run(self):
         
         if self.work=="target_SNP_selection":
-            from target_SNP_selection import target_SNP_selection
+            from markmaker_script.target_SNP_selection import target_SNP_selection
             cmd=target_SNP_selection(self.Abam,self.Bbam,self.F1bam,self.Aname,self.Bname,self.F1sim,self.reference,self.position,
                                      self.output_dir,self.min_depth,self.max_depth,self.Bhetero,self.Bsim,self.minMQ,self.minBQ)
             cmd.run()
         elif self.work=="CAPS":
-            from CAPS import CAPS
+            from markmaker_script.CAPS import CAPS
             cmd=CAPS(self.output_dir,self.restriction_enzyme,self.recipe,self.PCR_max_size,self.PCR_min_size,self.fragment_min_size,self.thread,self.make_html)
             cmd.run()
         elif self.work=="ARMS_preparation":
-            from ARMS_preparation import ARMS_preparation
+            from markmaker_script.ARMS_preparation import ARMS_preparation
             cmd=ARMS_preparation(self.output_dir,self.recipe,self.thread)
             cmd.run()
         elif self.work=="tetra_ARMS":
-            from tetra_ARMS import tetra_ARMS
+            from markmaker_script.tetra_ARMS import tetra_ARMS
             cmd=tetra_ARMS(self.output_dir,self.recipe,self.thread,self.first_size_min,self.first_size_max,self.second_size_min,self.second_size_max,self.make_html)
             cmd.run()
         elif self.work=="tri_ARMS":
-            from tri_ARMS import tri_ARMS
+            from markmaker_script.tri_ARMS import tri_ARMS
             cmd=tri_ARMS(self.output_dir,self.recipe,self.thread,self.PCR_max_size,self.PCR_min_size,self.SNP_dist_min,self.SNP_dist_max,self.make_html)
             cmd.run()
 
