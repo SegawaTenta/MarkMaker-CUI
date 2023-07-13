@@ -9,5 +9,5 @@ setup(name='DNAMarkMaker',
       author_name='Tenta Segawa',
       url='https://github.com/SegawaTenta/DNAMarkMaker-CUI',
       package=['DNAMarkMaker'],
-      entry=points={'console_scripts':['DNAMarkMaker=dnamarkmaker_script.DNAMarkMaker:main']}
+      entry_points={'console_scripts':['DNAMarkMaker=dnamarkmaker_script.DNAMarkMaker:main']}
       )
