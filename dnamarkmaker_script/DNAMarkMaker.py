@@ -2,14 +2,14 @@
 
 import os
 import argparse
-from markmaker_script.__init__ import __version__
+from dnamarkmaker_script.__init__ import __version__
 # from datetime import datetime
 # import tracemalloc
 
-class MarkMaker(object):
+class DNAMarkMaker(object):
     def __init__(self):
-        self.parser = argparse.ArgumentParser(description='MarkMaker version {}'.format(__version__))
-        self.parser.usage=('MarkMaker -w <target_SNP_selection/ARMS_preparation/tri_ARMS/tetra_ARMS/CAPS>')
+        self.parser = argparse.ArgumentParser(description='DNAMarkMaker version {}'.format(__version__))
+        self.parser.usage=('DNAMarkMaker -w <target_SNP_selection/ARMS_preparation/tri_ARMS/tetra_ARMS/CAPS>')
         self.parser.add_argument('-w','--work',
                             required=True,
                             type=str,
@@ -18,10 +18,10 @@ class MarkMaker(object):
         
         self.parser.add_argument('-Abam','--Abam',help='Full path of A bam')
         self.parser.add_argument('-Bbam','--Bbam',help='Full path of B bam')
-        self.parser.add_argument('-F1bam','--F1bam',help='Full path of F1 bam')
+        self.parser.add_argument('-Cbam','--Cbam',help='Full path of C bam')
         self.parser.add_argument('-Aname','--Aname',help='A name (A)')
         self.parser.add_argument('-Bname','--Bname',help='B name (B)')
-        self.parser.add_argument('-F1sim','--F1sim',help='F1 simulation file')
+        self.parser.add_argument('-Csim','--Csim',help='C simulation file')
         self.parser.add_argument('-reference','--reference',help='Full path of reference fasta')
         self.parser.add_argument('-position','--position',help='Target chromosome position [chr:start:end]')
         self.parser.add_argument('-o','--output_dir',help='Output directory')
@@ -46,10 +46,10 @@ class MarkMaker(object):
         self.work=args.work
         self.Abam=args.Abam
         self.Bbam=args.Bbam
-        self.F1bam=args.F1bam
+        self.F1bam=args.Cbam
         self.Aname=args.Aname
         self.Bname=args.Bname
-        self.F1sim=args.F1sim
+        self.F1sim=args.Csim
         self.reference=args.reference
         self.position=args.position
         self.output_dir=args.output_dir
@@ -259,31 +259,31 @@ class MarkMaker(object):
     def run(self):
         
         if self.work=="target_SNP_selection":
-            from markmaker_script.target_SNP_selection import target_SNP_selection
+            from dnamarkmaker_script.target_SNP_selection import target_SNP_selection
             cmd=target_SNP_selection(self.Abam,self.Bbam,self.F1bam,self.Aname,self.Bname,self.F1sim,self.reference,self.position,
                                      self.output_dir,self.min_depth,self.max_depth,self.Bhetero,self.Bsim,self.minMQ,self.minBQ)
             cmd.run()
         elif self.work=="CAPS":
-            from markmaker_script.CAPS import CAPS
+            from dnamarkmaker_script.CAPS import CAPS
             cmd=CAPS(self.output_dir,self.restriction_enzyme,self.recipe,self.PCR_max_size,self.PCR_min_size,self.fragment_min_size,self.thread,self.make_html)
             cmd.run()
         elif self.work=="ARMS_preparation":
-            from markmaker_script.ARMS_preparation import ARMS_preparation
+            from dnamarkmaker_script.ARMS_preparation import ARMS_preparation
             cmd=ARMS_preparation(self.output_dir,self.recipe,self.thread)
             cmd.run()
         elif self.work=="tetra_ARMS":
-            from markmaker_script.tetra_ARMS import tetra_ARMS
+            from dnamarkmaker_script.tetra_ARMS import tetra_ARMS
             cmd=tetra_ARMS(self.output_dir,self.recipe,self.thread,self.first_size_min,self.first_size_max,self.second_size_min,self.second_size_max,self.make_html)
             cmd.run()
         elif self.work=="tri_ARMS":
-            from markmaker_script.tri_ARMS import tri_ARMS
+            from dnamarkmaker_script.tri_ARMS import tri_ARMS
             cmd=tri_ARMS(self.output_dir,self.recipe,self.thread,self.PCR_max_size,self.PCR_min_size,self.SNP_dist_min,self.SNP_dist_max,self.make_html)
             cmd.run()
 
 if __name__ == '__main__':
     # tracemalloc.start()
     # print('[MarkMaker:{}] start MarkMaker'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
-    MarkMaker().run()
+    DNAMarkMaker().run()
     # print('[MarkMaker:{}] finish MarkMaker'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
     # current, peak = tracemalloc.get_traced_memory()
     # print("Peak memory usage: {} GB".format(peak / 10**9))

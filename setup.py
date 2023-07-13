@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 
 from distutils.core import setup
-from markmaker_script.__init__ import __version__
+from dnamarkmaker_script.__init__ import __version__
 
-setup(name='MarkMaker',
+setup(name='DNAMarkMaker',
       version='{}'.format(__version__),
-      description='MarkMaker: pipline to develop ARMS and CAPS marker',
+      description='DNAMarkMaker: pipline to develop ARMS and CAPS marker',
       author_name='Tenta Segawa',
-      url='https://github.com/SegawaTenta/MarkMaker-CUI',
-      package=['MarkMaker'],
-      entry=points={'console_scripts':['MarkMaker=markmaker_script.MarkMaker:main']}
+      url='https://github.com/SegawaTenta/DNAMarkMaker-CUI',
+      package=['DNAMarkMaker'],
+      entry=points={'console_scripts':['DNAMarkMaker=dnamarkmaker_script.DNAMarkMaker:main']}
       )
