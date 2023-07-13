@@ -94,7 +94,7 @@ class DNAMarkMaker(object):
                 self.Bname="B"
 
             if not args.F1sim:
-                self.F1sim='{0}/sim_95_hetero.txt'.format(os.path.dirname(__file__))
+                self.F1sim='{0}/sim_Aa_95.txt'.format(os.path.dirname(__file__))
             elif not os.path.isfile(args.F1sim):
                 self.parser.error('No such file {0}'.format(args.F1sim))
 
@@ -125,7 +125,7 @@ class DNAMarkMaker(object):
                 self.parser.error('-Bhetero is yes or no')
 
             if not args.Bsim:
-                self.Bsim='{0}/sim_95_hetero.txt'.format(os.path.dirname(__file__))
+                self.Bsim='{0}/sim_Aa_95.txt'.format(os.path.dirname(__file__))
             elif not os.path.isfile(args.Bsim):
                 self.parser.error('No such file {0}'.format(args.Bsim))
 
