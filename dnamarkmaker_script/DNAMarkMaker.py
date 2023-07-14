@@ -281,8 +281,8 @@ class DNAMarkMaker(object):
             cmd=tri_ARMS(self.output_dir,self.recipe,self.thread,self.PCR_max_size,self.PCR_min_size,self.SNP_dist_min,self.SNP_dist_max,self.make_html)
             cmd.run()
 
-    def main():
-        DNAMarkMaker().run()
+def main():
+    DNAMarkMaker().run()
     
 if __name__ == '__main__':
     DNAMarkMaker().main()
