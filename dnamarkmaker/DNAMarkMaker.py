@@ -2,7 +2,7 @@
 
 import os
 import argparse
-from dnamarkmaker_script.__init__ import __version__
+from dnamarkmaker.__init__ import __version__
 # from datetime import datetime
 # import tracemalloc
 
@@ -95,7 +95,7 @@ class DNAMarkMaker(object):
                 self.Bname="B"
 
             if not args.Csim:
-                self.Csim='{0}/sim_Aa_95.txt'.format(os.path.dirname(__file__))
+                self.Csim='{0}/dnamarkmaker/sim_Aa_95.txt'.format(os.path.dirname(__file__))
             elif not os.path.isfile(args.Csim):
                 self.parser.error('No such file {0}'.format(args.Csim))
 
@@ -126,7 +126,7 @@ class DNAMarkMaker(object):
                 self.parser.error('-Bhetero is yes or no')
 
             if not args.Bsim:
-                self.Bsim='{0}/dnamarkmaker_txt/sim_Aa_95.txt'.format(os.path.dirname(__file__))
+                self.Bsim='{0}/dnamarkmaker/sim_Aa_95.txt'.format(os.path.dirname(__file__))
             elif not os.path.isfile(args.Bsim):
                 self.parser.error('No such file {0}'.format(args.Bsim))
 
@@ -153,7 +153,7 @@ class DNAMarkMaker(object):
                 self.parser.error('No such file {0}'.format(args.restriction_enzyme))
 
             if not args.recipe:
-                self.recipe='{0}/dnamarkmaker_txt/primer_recipe.txt'.format(os.path.dirname(__file__))
+                self.recipe='{0}/dnamarkmaker/primer_recipe.txt'.format(os.path.dirname(__file__))
             elif not os.path.isfile(args.recipe):
                 self.parser.error('No such file {0}'.format(args.recipe))
 
@@ -185,7 +185,7 @@ class DNAMarkMaker(object):
                 self.parser.error('No such directory {0}'.format(args.output_dir))
 
             if not args.recipe:
-                self.recipe='{0}/dnamarkmaker_txt/primer_recipe.txt'.format(os.path.dirname(__file__))
+                self.recipe='{0}/dnamarkmaker/primer_recipe.txt'.format(os.path.dirname(__file__))
             elif not os.path.isfile(args.recipe):
                 self.parser.error('No such file {0}'.format(args.recipe))
 
@@ -197,7 +197,7 @@ class DNAMarkMaker(object):
                 self.parser.error('No such directory {0}'.format(args.output_dir))
 
             if not args.recipe:
-                self.recipe='{0}/dnamarkmaker_txt/primer_recipe.txt'.format(os.path.dirname(__file__))
+                self.recipe='{0}/dnamarkmaker/primer_recipe.txt'.format(os.path.dirname(__file__))
             elif not os.path.isfile(args.recipe):
                 self.parser.error('No such file {0}'.format(args.recipe))
 
@@ -230,7 +230,7 @@ class DNAMarkMaker(object):
                 self.parser.error('No such directory {0}'.format(args.output_dir))
 
             if not args.recipe:
-                self.recipe='{0}/dnamarkmaker_txt/primer_recipe.txt'.format(os.path.dirname(__file__))
+                self.recipe='{0}/dnamarkmaker/primer_recipe.txt'.format(os.path.dirname(__file__))
             elif not os.path.isfile(args.recipe):
                 self.parser.error('No such file {0}'.format(args.recipe))
 
@@ -260,24 +260,24 @@ class DNAMarkMaker(object):
     def run(self):
         
         if self.work=="target_SNP_selection":
-            from dnamarkmaker_script.target_SNP_selection import target_SNP_selection
+            from dnamarkmaker.target_SNP_selection import target_SNP_selection
             cmd=target_SNP_selection(self.Abam,self.Bbam,self.Cbam,self.Aname,self.Bname,self.Csim,self.reference,self.position,
                                      self.output_dir,self.min_depth,self.max_depth,self.Bhetero,self.Bsim,self.minMQ,self.minBQ)
             cmd.run()
         elif self.work=="CAPS":
-            from dnamarkmaker_script.CAPS import CAPS
+            from dnamarkmaker.CAPS import CAPS
             cmd=CAPS(self.output_dir,self.restriction_enzyme,self.recipe,self.PCR_max_size,self.PCR_min_size,self.fragment_min_size,self.thread,self.make_html)
             cmd.run()
         elif self.work=="ARMS_preparation":
-            from dnamarkmaker_script.ARMS_preparation import ARMS_preparation
+            from dnamarkmaker.ARMS_preparation import ARMS_preparation
             cmd=ARMS_preparation(self.output_dir,self.recipe,self.thread)
             cmd.run()
         elif self.work=="tetra_ARMS":
-            from dnamarkmaker_script.tetra_ARMS import tetra_ARMS
+            from dnamarkmaker.tetra_ARMS import tetra_ARMS
             cmd=tetra_ARMS(self.output_dir,self.recipe,self.thread,self.first_size_min,self.first_size_max,self.second_size_min,self.second_size_max,self.make_html)
             cmd.run()
         elif self.work=="tri_ARMS":
-            from dnamarkmaker_script.tri_ARMS import tri_ARMS
+            from dnamarkmaker.tri_ARMS import tri_ARMS
             cmd=tri_ARMS(self.output_dir,self.recipe,self.thread,self.PCR_max_size,self.PCR_min_size,self.SNP_dist_min,self.SNP_dist_max,self.make_html)
             cmd.run()
 
