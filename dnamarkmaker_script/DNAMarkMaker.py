@@ -281,13 +281,9 @@ class DNAMarkMaker(object):
             cmd=tri_ARMS(self.output_dir,self.recipe,self.thread,self.PCR_max_size,self.PCR_min_size,self.SNP_dist_min,self.SNP_dist_max,self.make_html)
             cmd.run()
 
+    def main():
+        DNAMarkMaker().run()
     
 if __name__ == '__main__':
-    # tracemalloc.start()
-    # print('[MarkMaker:{}] start MarkMaker'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
-    DNAMarkMaker().run()
-    # print('[MarkMaker:{}] finish MarkMaker'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
-    # current, peak = tracemalloc.get_traced_memory()
-    # print("Peak memory usage: {} GB".format(peak / 10**9))
-    # tracemalloc.stop()
-
+    DNAMarkMaker().main()
+    
