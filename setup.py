@@ -4,7 +4,7 @@
 
 
 from setuptools import setup, find_packages
-from dnamarkmaker_script.__init__ import __version__
+from dnamarkmaker.__init__ import __version__
 
 setup(
     name="DNAMarkMaker",
@@ -12,13 +12,13 @@ setup(
     description='DNAMarkMaker: pipline to develop ARMS and CAPS marker',
     url='https://github.com/SegawaTenta/DNAMarkMaker-CUI',
     author='Tenta Segawa',
-    packages=['dnamarkmaker_script'],
+    packages=['dnamarkmaker'],
     install_requires=[
         "primer3-py"
     ],
     entry_points={
         'console_scripts': [
-            'DNAMarkMaker=dnamarkmaker_script.DNAMarkMaker:main'
+            'DNAMarkMaker=dnamarkmaker.DNAMarkMaker:main'
         ]
     }
 )
