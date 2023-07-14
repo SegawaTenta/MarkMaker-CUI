@@ -12,6 +12,7 @@ setup(
     description='DNAMarkMaker: pipline to develop ARMS and CAPS marker',
     url='https://github.com/SegawaTenta/DNAMarkMaker-CUI',
     author='Tenta Segawa',
+    packages=['dnamarkmaker_script'],
     install_requires=[
         "primer3-py"
     ],
