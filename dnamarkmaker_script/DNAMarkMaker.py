@@ -8,6 +8,7 @@ from dnamarkmaker_script.__init__ import __version__
 
 class DNAMarkMaker(object):
     def __init__(self):
+    
         self.parser = argparse.ArgumentParser(description='DNAMarkMaker version {}'.format(__version__))
         self.parser.usage=('DNAMarkMaker -w <target_SNP_selection/ARMS_preparation/tri_ARMS/tetra_ARMS/CAPS>')
         self.parser.add_argument('-w','--work',
@@ -46,10 +47,10 @@ class DNAMarkMaker(object):
         self.work=args.work
         self.Abam=args.Abam
         self.Bbam=args.Bbam
-        self.F1bam=args.Cbam
+        self.Cbam=args.Cbam
         self.Aname=args.Aname
         self.Bname=args.Bname
-        self.F1sim=args.Csim
+        self.Csim=args.Csim
         self.reference=args.reference
         self.position=args.position
         self.output_dir=args.output_dir
@@ -82,10 +83,10 @@ class DNAMarkMaker(object):
             elif not os.path.isfile(args.Bbam):
                 self.parser.error('No such file {0}'.format(args.Bbam))
 
-            if not args.F1bam:
-                self.F1bam=""
-            elif not os.path.isfile(args.F1bam):
-                self.parser.error('No such file {0}'.format(args.F1bam))
+            if not args.Cbam:
+                self.Cbam=""
+            elif not os.path.isfile(args.Cbam):
+                self.parser.error('No such file {0}'.format(args.Cbam))
 
             if not args.Aname:
                 self.Aname="A"
@@ -93,10 +94,10 @@ class DNAMarkMaker(object):
             if not args.Bname:
                 self.Bname="B"
 
-            if not args.F1sim:
-                self.F1sim='{0}/sim_Aa_95.txt'.format(os.path.dirname(__file__))
-            elif not os.path.isfile(args.F1sim):
-                self.parser.error('No such file {0}'.format(args.F1sim))
+            if not args.Csim:
+                self.Csim='{0}/sim_Aa_95.txt'.format(os.path.dirname(__file__))
+            elif not os.path.isfile(args.Csim):
+                self.parser.error('No such file {0}'.format(args.Csim))
 
             if not args.reference:
                 self.parser.error('-reference is required with -w target_SNP_selection')
@@ -125,7 +126,7 @@ class DNAMarkMaker(object):
                 self.parser.error('-Bhetero is yes or no')
 
             if not args.Bsim:
-                self.Bsim='{0}/sim_Aa_95.txt'.format(os.path.dirname(__file__))
+                self.Bsim='{0}/dnamarkmaker_txt/sim_Aa_95.txt'.format(os.path.dirname(__file__))
             elif not os.path.isfile(args.Bsim):
                 self.parser.error('No such file {0}'.format(args.Bsim))
 
@@ -152,7 +153,7 @@ class DNAMarkMaker(object):
                 self.parser.error('No such file {0}'.format(args.restriction_enzyme))
 
             if not args.recipe:
-                self.recipe='{0}/primer_recipe.txt'.format(os.path.dirname(__file__))
+                self.recipe='{0}/dnamarkmaker_txt/primer_recipe.txt'.format(os.path.dirname(__file__))
             elif not os.path.isfile(args.recipe):
                 self.parser.error('No such file {0}'.format(args.recipe))
 
@@ -184,7 +185,7 @@ class DNAMarkMaker(object):
                 self.parser.error('No such directory {0}'.format(args.output_dir))
 
             if not args.recipe:
-                self.recipe='{0}/primer_recipe.txt'.format(os.path.dirname(__file__))
+                self.recipe='{0}/dnamarkmaker_txt/primer_recipe.txt'.format(os.path.dirname(__file__))
             elif not os.path.isfile(args.recipe):
                 self.parser.error('No such file {0}'.format(args.recipe))
 
@@ -196,7 +197,7 @@ class DNAMarkMaker(object):
                 self.parser.error('No such directory {0}'.format(args.output_dir))
 
             if not args.recipe:
-                self.recipe='{0}/primer_recipe.txt'.format(os.path.dirname(__file__))
+                self.recipe='{0}/dnamarkmaker_txt/primer_recipe.txt'.format(os.path.dirname(__file__))
             elif not os.path.isfile(args.recipe):
                 self.parser.error('No such file {0}'.format(args.recipe))
 
@@ -229,7 +230,7 @@ class DNAMarkMaker(object):
                 self.parser.error('No such directory {0}'.format(args.output_dir))
 
             if not args.recipe:
-                self.recipe='{0}/primer_recipe.txt'.format(os.path.dirname(__file__))
+                self.recipe='{0}/dnamarkmaker_txt/primer_recipe.txt'.format(os.path.dirname(__file__))
             elif not os.path.isfile(args.recipe):
                 self.parser.error('No such file {0}'.format(args.recipe))
 
@@ -260,7 +261,7 @@ class DNAMarkMaker(object):
         
         if self.work=="target_SNP_selection":
             from dnamarkmaker_script.target_SNP_selection import target_SNP_selection
-            cmd=target_SNP_selection(self.Abam,self.Bbam,self.F1bam,self.Aname,self.Bname,self.F1sim,self.reference,self.position,
+            cmd=target_SNP_selection(self.Abam,self.Bbam,self.Cbam,self.Aname,self.Bname,self.Csim,self.reference,self.position,
                                      self.output_dir,self.min_depth,self.max_depth,self.Bhetero,self.Bsim,self.minMQ,self.minBQ)
             cmd.run()
         elif self.work=="CAPS":
@@ -280,6 +281,7 @@ class DNAMarkMaker(object):
             cmd=tri_ARMS(self.output_dir,self.recipe,self.thread,self.PCR_max_size,self.PCR_min_size,self.SNP_dist_min,self.SNP_dist_max,self.make_html)
             cmd.run()
 
+    
 if __name__ == '__main__':
     # tracemalloc.start()
     # print('[MarkMaker:{}] start MarkMaker'.format(datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
