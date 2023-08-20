@@ -68,8 +68,8 @@
 
 
 ### command : ARMS_preparation
-   Purpose: Design breed-specific primers for the creation of ARMS markers.
-   Description: This command utilizes the inter-cultivar SNP information previously identified to design primers specific to each breed or line, preparing for the next stage of ARMS marker development.
+  Purpose: Design breed-specific primers for the creation of ARMS markers.
+  Description: This command utilizes the inter-cultivar SNP information previously identified to design primers specific to each breed or line, preparing for the next stage of ARMS marker development.
 
   Required options
   ```
@@ -82,57 +82,57 @@
   ```
 
 ### command : tri_ARMS
-   Purpose: Develop tri-ARMS markers.
-   Description: Leveraging the primers designed in the `ARMS_preparation` phase, this command facilitates the development of tri-ARMS markers, which involve three primers for amplification.
+  Purpose: Develop tri-ARMS markers.
+  Description: Leveraging the primers designed in the `ARMS_preparation` phase, this command facilitates the development of tri-ARMS markers, which involve three primers for amplification.
 
-    Required options
-    ```
-    -o OUTPUT_DIR                             Output directory
-    ```
+  Required options
+  ```
+  -o OUTPUT_DIR                             Output directory
+  ```
 
-    Additional options
-    ```
-    -recipe RECIPE                           Full path of primer recipe file
-    -PCR_max_size PCR_MAX_SIZE               Maximum size of PCR product (700)
-    -PCR_min_size PCR_MIN_SIZE               Minimum size of PCR product (100)
-    -SNP_dist SNP_DIST                       Target SNP distance (100:300)
-    -make_html MAKE_HTML                     Whether to html file (yes)
-    ```
+  Additional options
+  ```
+  -recipe RECIPE                           Full path of primer recipe file
+  -PCR_max_size PCR_MAX_SIZE               Maximum size of PCR product (700)
+  -PCR_min_size PCR_MIN_SIZE               Minimum size of PCR product (100)
+  -SNP_dist SNP_DIST                       Target SNP distance (100:300)
+  -make_html MAKE_HTML                     Whether to html file (yes)
+  ```
 
 ### command : tetra_ARMS
-   Purpose: Develop tetra-ARMS markers.
-   Description: Similarly to the `tri_ARMS` command, this command uses the primers from `ARMS_preparation` but develops tetra-ARMS markers, which utilize four primers in the amplification process.
+  Purpose: Develop tetra-ARMS markers.
+  Description: Similarly to the `tri_ARMS` command, this command uses the primers from `ARMS_preparation` but develops tetra-ARMS markers, which utilize four primers in the amplification process.
 
-    Required options
-    ```
-    -o OUTPUT_DIR                 Output directory
-    ```
+  Required options
+  ```
+  -o OUTPUT_DIR                 Output directory
+  ```
 
-    Additional options
-    ```
-    -first_size FIRST_SIZE                   Size of first band (100:500)
-    -second_size SECOND_SIZE                 Size of second band (600:1000) 
-    -make_html MAKE_HTML                     Whether to html file (yes)
-    ```
+  Additional options
+  ```
+  -first_size FIRST_SIZE                   Size of first band (100:500)
+  -second_size SECOND_SIZE                 Size of second band (600:1000) 
+  -make_html MAKE_HTML                     Whether to html file (yes)
+  ```
 
 ### command : CAPS
-   Purpose: Create CAPS markers.
-   Description: This command supports the development of CAPS markers by introducing specific restriction enzymes to the identified inter-cultivar SNP information, resulting in markers that are identified based on the cleavage patterns of these enzymes on the DNA fragments.
+  Purpose: Create CAPS markers.
+  Description: This command supports the development of CAPS markers by introducing specific restriction enzymes to the identified inter-cultivar SNP information, resulting in markers that are identified based on the cleavage patterns of these enzymes on the DNA fragments.
 
-    Required options
-    ```
-    -o OUTPUT_DIR                            Output directory
-    -restriction_enzyme RESTRICTION_ENZYME   Full path of restriction enzyme file
-    ```
+  Required options
+  ```
+  -o OUTPUT_DIR                            Output directory
+  -restriction_enzyme RESTRICTION_ENZYME   Full path of restriction enzyme file
+  ```
 
-    Additional options
-    ```
-    -recipe RECIPE                           Full path of primer recipe file
-    -PCR_max_size PCR_MAX_SIZE               Maximum size of PCR product (1000)
-    -PCR_min_size PCR_MIN_SIZE               Minimum size of PCR product (500)
-    -fragment_min_size FRAGMENT_MIN_SIZE     Minimum fragment size of restricted PCR product (200)
-    -make_html MAKE_HTML                     Whether to html file (yes)
-    ```
+  Additional options
+  ```
+  -recipe RECIPE                           Full path of primer recipe file
+  -PCR_max_size PCR_MAX_SIZE               Maximum size of PCR product (1000)
+  -PCR_min_size PCR_MIN_SIZE               Minimum size of PCR product (500)
+  -fragment_min_size FRAGMENT_MIN_SIZE     Minimum fragment size of restricted PCR product (200)
+  -make_html MAKE_HTML                     Whether to html file (yes)
+  ```
 
 
 Band size of PCR product amplified by developped marker
@@ -187,7 +187,7 @@ ex3) Heterozygous plants
               -reference Full/path/to/referance.fasta \
               -Abam Full/path/to/A.bam \
               -Bbam Full/path/to/B.bam \
-			        -Cbam Full/path/to/F1.bam \
+              -Cbam Full/path/to/F1.bam \
               -position chr1:10000:50000 \
               -o example3 \
 ```
@@ -217,7 +217,7 @@ CAPS
 ex)
 ```
  DNAMarkMaker -w CAPS \
-		          -restriction_enzyme downloaded/restriction_enzyme.txt\
+              -restriction_enzyme downloaded/restriction_enzyme.txt\
               -o example1
 ```
 
