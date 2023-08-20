@@ -204,32 +204,24 @@ ex3) Heterozygous plants
 ```
 
 - ARMS_preparation
-
-ex)
 ```
  DNAMarkMaker -w ARMS_preparation \
               -o example1
 ```
 
 - tri_ARMS
-
-ex)
 ```
  DNAMarkMaker -w tri_ARMS \
               -o example1
 ```
 
 - tetra_ARMS
-
-ex)
 ```
  DNAMarkMaker -w tetra_ARMS \
               -o example1
 ```
 
 - CAPS
-
-ex)
 ```
  DNAMarkMaker -w CAPS \
               -restriction_enzyme downloaded/restriction_enzyme.txt\
