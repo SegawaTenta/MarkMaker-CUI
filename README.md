@@ -145,23 +145,29 @@ XXXXXXXXXX
 
 ## The input file format
 - BAM File
+
 A sorted binary format file that stores NGS reads alignment data bai file.
 
 - Reference 
+
 A fasta format file for alignmnet.
 
 - Simulation Files
+
 A txt file contains space-separated arbitrary simulation confidence intervals for each depth. Users can obtain this from the provided URL (https://github.com/SegawaTenta/DNAMarkMaker_manual/tree/main/simulation) and modify the values if required for specific analyses.
 
 - Recipe File
+
 A txt file contains the options used by the primer design tool, primer3. The default version of this file can be downloaded from the provided URL (https://github.com/SegawaTenta/DNAMarkMaker_manual/blob/main/primer_recipe/primer_recipe.txt), but users can also tailor the values inside to suit specific needs or experimental conditions.
 
 - Restriction enzyme file
+
 A txt file contains space-separated arbitrary the name of restriction enzyme and recognizing sequense (https://github.com/SegawaTenta/DNAMarkMaker_manual/blob/main/restriction_enzyme/restriction_enzyme.txt) and modify the contents if required for specific analyses.
 
 ## The example of execution
 
 - target_SNP_selection
+
 ex1) Homozygous plant
 ```
  DNAMarkMaker -w target_SNP_selection \
@@ -198,6 +204,7 @@ ex3) Heterozygous plants
 ```
 
 - ARMS_preparation
+
 ex)
 ```
  DNAMarkMaker -w ARMS_preparation \
@@ -205,6 +212,7 @@ ex)
 ```
 
 - tri_ARMS
+
 ex)
 ```
  DNAMarkMaker -w tri_ARMS \
@@ -212,6 +220,7 @@ ex)
 ```
 
 - tetra_ARMS
+
 ex)
 ```
  DNAMarkMaker -w tetra_ARMS \
@@ -219,6 +228,7 @@ ex)
 ```
 
 - CAPS
+
 ex)
 ```
  DNAMarkMaker -w CAPS \
