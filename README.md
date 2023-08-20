@@ -16,7 +16,7 @@
  - [The output file format](#The-output-file-format)
 
 ## Introduction of DNAMarkMaker
-  <img src="https://github.com/YuSugihara/QTL-seq/blob/master/images/1_logo.png" width=200>
+  <img src="https://github.com/SegawaTenta/DNAMarkMaker-CUI/blob/main/images/logo.png">
   
   DNAMarkMaker is a tool to develop ARMS and/or CAPS markers that target SNPs between cultivars/lines, utilizing data from next-generation sequencing.
   
@@ -141,7 +141,8 @@
 
 
 Band size of PCR product amplified by developped marker
-XXXXXXXXXX
+
+<img src="https://github.com/SegawaTenta/DNAMarkMaker-CUI/blob/main/images/Size.png">
 
 ## The input file format
 - BAM File
