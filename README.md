@@ -40,7 +40,9 @@
   'DNAMarkMaker' offers five commands. Users can specify which command to run using the '-w' option. Here is a summary of each command.
 
 ### command : target_SNP_selection
-  Purpose: Identify SNPs from the BAM file, which contains alignment data of two breeds.  Description: This command should be the first one executed when using DNAMarkMaker, as it lays the foundation for subsequent marker design by selecting target SNPs.
+  Purpose: Identify SNPs from the BAM file, which contains alignment data of two breeds.
+  
+  Description: This command should be the first one executed when using DNAMarkMaker, as it lays the foundation for subsequent marker design by selecting target SNPs.
 
   Required options
   ```
@@ -67,7 +69,9 @@
 
 
 ### command : ARMS_preparation
-  Purpose: Design breed-specific primers for the creation of ARMS markers.  Description: This command utilizes the inter-cultivar SNP information previously identified to design primers specific to each breed or line, preparing for the next stage of ARMS marker development.
+  Purpose: Design breed-specific primers for the creation of ARMS markers.
+  
+  Description: This command utilizes the inter-cultivar SNP information previously identified to design primers specific to each breed or line, preparing for the next stage of ARMS marker development.
 
   Required options
   ```
@@ -80,7 +84,9 @@
   ```
 
 ### command : tri_ARMS
-  Purpose: Develop tri-ARMS markers.  Description: Leveraging the primers designed in the `ARMS_preparation` phase, this command facilitates the development of tri-ARMS markers, which involve three primers for amplification.
+  Purpose: Develop tri-ARMS markers.
+  
+  Description: Leveraging the primers designed in the `ARMS_preparation` phase, this command facilitates the development of tri-ARMS markers, which involve three primers for amplification.
 
   Required options
   ```
@@ -97,7 +103,9 @@
   ```
 
 ### command : tetra_ARMS
-  Purpose: Develop tetra-ARMS markers.  Description: Similarly to the `tri_ARMS` command, this command uses the primers from `ARMS_preparation` but develops tetra-ARMS markers, which utilize four primers in the amplification process.
+  Purpose: Develop tetra-ARMS markers.
+  
+  Description: Similarly to the `tri_ARMS` command, this command uses the primers from `ARMS_preparation` but develops tetra-ARMS markers, which utilize four primers in the amplification process.
 
   Required options
   ```
@@ -112,7 +120,9 @@
   ```
 
 ### command : CAPS
-  Purpose: Create CAPS markers.  Description: This command supports the development of CAPS markers by introducing specific restriction enzymes to the identified inter-cultivar SNP information, resulting in markers that are identified based on the cleavage patterns of these enzymes on the DNA fragments.
+  Purpose: Create CAPS markers.
+  
+  Description: This command supports the development of CAPS markers by introducing specific restriction enzymes to the identified inter-cultivar SNP information, resulting in markers that are identified based on the cleavage patterns of these enzymes on the DNA fragments.
 
   Required options
   ```
