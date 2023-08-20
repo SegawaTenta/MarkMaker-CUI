@@ -163,11 +163,17 @@ class tetra_ARMS(object):
                         # print(seq,select_s_posi,select_e_posi)
 
                         if primer['PRIMER_PAIR_NUM_RETURNED']>0:
+                            
+                            product_size1=primer['PRIMER_RIGHT_0'][0]-primer['PRIMER_LEFT_0'][0]+1
+                            product_size2=position-self.s_posi-select_s_posi-primer['PRIMER_LEFT_0'][0]+b_rv_ln
+                            product_size3=product_size1-(position-self.s_posi-select_s_posi-primer['PRIMER_LEFT_0'][0])-1+a_fw_ln
+
                             output_primers.write("{0}\t{1}\t{2}\t{3}\t".format(array[0],position,select_s_posi,select_e_posi))
                             output_primers.write("{0}\t{1}\t{2}\t{3}\t{4}\t".format(a_fw_name,a_fw,a_fw_ln,a_fw_tm,a_fw_gc))
                             output_primers.write("{0}\t{1}\t{2}\t{3}\t{4}\t".format(b_rv_name,b_rv,b_rv_ln,b_rv_tm,b_rv_gc))
                             output_primers.write("Fw\t{0}\t{1}\t{2}\t{3}\t".format(primer['PRIMER_LEFT_0_SEQUENCE'],primer['PRIMER_LEFT_0'],int(primer['PRIMER_LEFT_0_TM']*10)/10,int(primer['PRIMER_LEFT_0_GC_PERCENT']*10)/10))
-                            output_primers.write("Rv\t{0}\t{1}\t{2}\t{3}\n".format(primer['PRIMER_RIGHT_0_SEQUENCE'],primer['PRIMER_RIGHT_0'],int(primer['PRIMER_RIGHT_0_TM']*10)/10,int(primer['PRIMER_RIGHT_0_GC_PERCENT']*10)/10))
+                            output_primers.write("Rv\t{0}\t{1}\t{2}\t{3}\t".format(primer['PRIMER_RIGHT_0_SEQUENCE'],primer['PRIMER_RIGHT_0'],int(primer['PRIMER_RIGHT_0_TM']*10)/10,int(primer['PRIMER_RIGHT_0_GC_PERCENT']*10)/10))
+                            output_primers.write("{0}\t{1}\t{2}\n".format(product_size1,product_size2,product_size3))
                             can_make="did"
 
                     if a_rv!="-" and b_fw!="-" and can_make!="did":
@@ -210,11 +216,17 @@ class tetra_ARMS(object):
                             })
 
                         if primer['PRIMER_PAIR_NUM_RETURNED']>0:
+
+                            product_size1=primer['PRIMER_RIGHT_0'][0]-primer['PRIMER_LEFT_0'][0]+1
+                            product_size2=position-self.s_posi-select_s_posi-primer['PRIMER_LEFT_0'][0]+a_rv_ln
+                            product_size3=product_size1-(position-self.s_posi-select_s_posi-primer['PRIMER_LEFT_0'][0])-1+b_fw_ln
+
                             output_primers.write("{0}\t{1}\t{2}\t{3}\t".format(array[0],position,select_s_posi,select_e_posi))
                             output_primers.write("{0}\t{1}\t{2}\t{3}\t{4}\t".format(b_fw_name,b_fw,b_fw_ln,b_fw_tm,b_fw_gc))
                             output_primers.write("{0}\t{1}\t{2}\t{3}\t{4}\t".format(a_rv_name,a_rv,a_rv_ln,a_rv_tm,a_rv_gc))
                             output_primers.write("Fw\t{0}\t{1}\t{2}\t{3}\t".format(primer['PRIMER_LEFT_0_SEQUENCE'],primer['PRIMER_LEFT_0'],int(primer['PRIMER_LEFT_0_TM']*10)/10,int(primer['PRIMER_LEFT_0_GC_PERCENT']*10)/10))
-                            output_primers.write("Rv\t{0}\t{1}\t{2}\t{3}\n".format(primer['PRIMER_RIGHT_0_SEQUENCE'],primer['PRIMER_RIGHT_0'],int(primer['PRIMER_RIGHT_0_TM']*10)/10,int(primer['PRIMER_RIGHT_0_GC_PERCENT']*10)/10))
+                            output_primers.write("Rv\t{0}\t{1}\t{2}\t{3}\t".format(primer['PRIMER_RIGHT_0_SEQUENCE'],primer['PRIMER_RIGHT_0'],int(primer['PRIMER_RIGHT_0_TM']*10)/10,int(primer['PRIMER_RIGHT_0_GC_PERCENT']*10)/10))
+                            output_primers.write("{0}\t{1}\t{2}\n".format(product_size1,product_size2,product_size3))
 
                 if can_make=="yes" or can_make=="did":
                     output_site.write("{0}\n".format(line))
@@ -360,7 +372,7 @@ class tetra_ARMS(object):
                 output_html.write('<tr><td>Rv</td><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td></tr>'.format(info_Rv_seq,info_Rv_len,info_Rv_tm,info_Rv_gc))
                 output_html.write('<tr><td>{5}{0}{6}</td><td>{5}{1}{6}</td><td>{5}{2}{6}</td><td>{5}{3}{6}</td><td>{5}{4}{6}</td></tr>'.format(marker_array[4],info_s_Fw_seq,len(info_s_Fw_seq),info_s_Fw_tm,info_s_Fw_gc,'<font color="#a260bf">','</font>'))
                 output_html.write('<tr><td>{5}{0}{6}</td><td>{5}{1}{6}</td><td>{5}{2}{6}</td><td>{5}{3}{6}</td><td>{5}{4}{6}</td></tr></font></table>\n'.format(marker_array[9],info_s_Rv_seq,len(info_s_Rv_seq),info_s_Rv_tm,info_s_Rv_gc,'<font color="#fd7e00">','</font>'))
-                output_html.write('<table><tr><th>PCR product size</th></tr><tr><td>{0}</td></tr></table>\n'.format(info_Rv_posi-info_Fw_posi+1))
+                output_html.write('<table><tr><th>PCR product size</th></tr><tr><td>Fw & Rv : {0}</td></tr><tr><td>Fw & {1}{2}{3} : {4}</td></tr><tr><td>{5}{6}{3} & Rv : {7}</td></tr></table>\n'.format(marker_array[24],'<font color="#fd7e00">',marker_array[9],'</font>',marker_array[25],'<font color="#a260bf">',marker_array[4],marker_array[26]))
                 output_html.write('<h2>{0}</h2>\n'.format(self.aname))
 
                 divid_num=math.ceil(len(aseq)/100)

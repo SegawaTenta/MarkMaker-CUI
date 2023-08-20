@@ -91,14 +91,16 @@ class CAPS(object):
         self.enzyme_dict={}
         with open(self.restriction_enzyme) as f:
             for line in f:
+                
                 line=line.strip()
                 array=line.split()
-                name=array[0]
-                bases=array[1]
-                if name in self.enzyme_dict.keys():
-                    self.enzyme_dict[name]="{0},{1}".format(self.enzyme_dict[name],bases)
-                else:
-                    self.enzyme_dict[name]=bases
+                if len(array)>=2:
+                    name=array[0]
+                    bases=array[1]
+                    if name in self.enzyme_dict.keys():
+                        self.enzyme_dict[name]="{0},{1}".format(self.enzyme_dict[name],bases)
+                    else:
+                        self.enzyme_dict[name]=bases
 
         self.dict_variant_error={}
         with open('{0}/target_SNP_selection/variant.txt'.format(self.output_dir)) as variant_txt:
@@ -348,7 +350,7 @@ class CAPS(object):
                 output_html.write('<table><tr><th>Primers</th><th>Sequence</th><th>Length</th><th>Tm</th><th>GC%</th></tr>')
                 output_html.write('<tr><td>Fw</td><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td></tr>'.format(info_Fw_seq,info_Fw_len,info_Fw_tm,info_Fw_gc))
                 output_html.write('<tr><td>Rv</td><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td></tr></table>\n'.format(info_Rv_seq,info_Rv_len,info_Rv_tm,info_Rv_gc))
-                output_html.write('<table><tr><th>PCR product size</th></tr><tr><td>{0}</td></tr></table>\n'.format(info_Rv_posi-info_Fw_posi+1))
+                output_html.write('<table><tr><th>PCR product size</th></tr><tr><td>Fw & Rv : {0}</td></tr></table>\n'.format(info_Rv_posi-info_Fw_posi+1))
                 output_html.write('<h2>{0}</h2>\n'.format(self.aname))
 
                 divid_num=math.ceil(len(aseq)/100)

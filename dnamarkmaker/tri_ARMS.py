@@ -206,10 +206,15 @@ class tri_ARMS(object):
                     primer_seq,primer_tm,primer_gc,primer_posi=run_primer3(seq,"rv")
                     if primer_seq!="-":
                         select_e_range=select_s_posi+primer_posi[0]+1
+
+                        product_size1=select_e_range-select_s_range
+                        product_size2=select_e_range-((int(array[7])-int(array[12]))-self.s_posi+1)
+
                         output_test_primers.write("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t".format(array[0],array[1],array[2],array[3],array[4],array[5],array[6]))
                         output_test_primers.write("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t".format(array[7],array[8],array[9],array[10],array[11],array[12]))
                         output_test_primers.write("Rv\t{0}\t{1}\t{2}\t{3}\t".format(primer_seq,primer_tm,primer_gc,primer_posi[1]))
-                        output_test_primers.write("{0}\t{1}\n".format(select_s_range,select_e_range))
+                        output_test_primers.write("{0}\t{1}\t".format(select_s_range,select_e_range))
+                        output_test_primers.write("{0}\t{1}\n".format(product_size1,product_size2))
         
         with open('{0}/tri_ARMS/tri_site_sRv.txt'.format(self.output_dir)) as f:
             for line in f:
@@ -231,10 +236,15 @@ class tri_ARMS(object):
                     primer_seq,primer_tm,primer_gc,primer_posi=run_primer3(seq,"fw")
                     if primer_seq!="-":
                         select_s_range=select_s_posi+primer_posi[0]
+
+                        product_size1=select_e_range-select_s_range
+                        product_size2=((int(array[1])+int(array[6]))-self.s_posi)-select_s_range
+
                         output_test_primers.write("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t".format(array[0],array[1],array[2],array[3],array[4],array[5],array[6]))
                         output_test_primers.write("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t".format(array[7],array[8],array[9],array[10],array[11],array[12]))
                         output_test_primers.write("Fw\t{0}\t{1}\t{2}\t{3}\t".format(primer_seq,primer_tm,primer_gc,primer_posi[1]))
-                        output_test_primers.write("{0}\t{1}\n".format(select_s_range,select_e_range))
+                        output_test_primers.write("{0}\t{1}\t".format(select_s_range,select_e_range))
+                        output_test_primers.write("{0}\t{1}\n".format(product_size1,product_size2))
 
         output_test_primers.close()
 
@@ -369,13 +379,20 @@ class tri_ARMS(object):
                 output_html.write('<table><tr><th>Chrmosome</th><th>Position</th></tr><tr><td>{0}</td><td>{1}-{2}</td></tr></table>\n'.format(info_chr,real_s_posi,real_e_posi))
                 output_html.write('<table><tr><th>Target SNP</th></tr><tr><td>{0}</td><td>({1})</td><td>{2}</td><td>({3})</td></tr></table>\n'.format(info_s1_posi,info_s1_posi-self.s_posi-info_seq_s_posi+1,info_s2_posi,info_s2_posi-self.s_posi-info_seq_s_posi+1))
                 output_html.write('<table><tr><th>Primers</th><th>Sequence</th><th>Length</th><th>Tm</th><th>GC%</th></tr>')
+                
                 if marker_array[13]=="Fw":
                     output_html.write('<tr><td>Fw</td><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td></tr>'.format(info_share_seq,info_share_len,info_share_tm,info_share_gc))
                 else:
                     output_html.write('<tr><td>Rv</td><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td></tr>'.format(info_share_seq,info_share_len,info_share_tm,info_share_gc))
+                
                 output_html.write('<tr><td>{5}{0}{6}</td><td>{5}{1}{6}</td><td>{5}{2}{6}</td><td>{5}{3}{6}</td><td>{5}{4}{6}</td></tr>'.format(marker_array[2],info_s1_seq,info_s1_len,info_s1_tm,info_s1_gc,'<font color="#a260bf">','</font>'))
                 output_html.write('<tr><td>{5}{0}{6}</td><td>{5}{1}{6}</td><td>{5}{2}{6}</td><td>{5}{3}{6}</td><td>{5}{4}{6}</td></tr></font></table>\n'.format(marker_array[8],info_s2_seq,info_s2_len,info_s2_tm,info_s2_gc,'<font color="#fd7e00">','</font>'))
-                output_html.write('<table><tr><th>PCR product size</th></tr><tr><td>{0}</td></tr></table>\n'.format(real_e_posi-real_s_posi+1))
+                
+                if marker_array[13]=="Fw":
+                    output_html.write('<table><tr><th>PCR product size</th></tr><tr><td>Fw & {0}{1}{2} : {3}</td></tr><tr><td>Fw & {4}{5}{2} : {6}</td></tr></table>\n'.format('<font color="#a260bf">',marker_array[2],'</font>',int(marker_array[21]),'<font color="#fd7e00">',marker_array[8],int(marker_array[20]),))
+                else:
+                    output_html.write('<table><tr><th>PCR product size</th></tr><tr><td>{0}{1}{2} & Rv : {3}</td></tr><tr><td> {4}{5}{2} & Rv : {6}</td></tr></table>\n'.format('<font color="#a260bf">',marker_array[2],'</font>',int(marker_array[20]),'<font color="#fd7e00">',marker_array[8],int(marker_array[21]),))
+                
                 output_html.write('<h2>{0}</h2>\n'.format(self.aname))
 
                 divid_num=math.ceil(len(aseq)/100)
