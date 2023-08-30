@@ -22,18 +22,25 @@
   
 ## Installation
 ### Dependencies
+   - python >=3.9.13
    - [samtools](https://github.com/samtools/samtools)
    - [primer3-py](https://github.com/libnano/primer3-py)
 
 ### Installation using bioconda
   You can install DNAMarkMaker using bioconda.
   ```
-  conda install -c bioconda DNAMarkMaker
+  conda install -c bioconda dnamarkmaker
   ```
   Alternatively, if you want to create DNAMarkMaker specific environment.
   ```
-  conda create -n DNAMarkMaker -c bioconda DNAMarkMaker
+  conda create -n DNAMarkMaker -c bioconda dnamarkmaker
   conda activate DNAMarkMaker 
+  ```
+  An error is detected if conda's python is not 3.9.13 or later.
+  ```
+  conda create -n DNAMarkMaker python=3.9.13 # Also You can select later 3.9.13
+  conda activate DNAMarkMaker 
+  conda install -c bioconda dnamarkmaker
   ```
   
 ## Usage
