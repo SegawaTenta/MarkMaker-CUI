@@ -152,29 +152,29 @@ Band size of PCR product amplified by developped marker
 <img src="https://github.com/SegawaTenta/DNAMarkMaker-CUI/blob/main/images/Size.png">
 
 ## The input file format
-- BAM File
+### BAM File
 
 A sorted binary format file that stores NGS reads alignment data bai file.
 
-- Reference 
+### Reference 
 
 A fasta format file for alignmnet.
 
-- Simulation Files
+### Simulation Files
 
 A txt file contains space-separated arbitrary simulation confidence intervals for each depth. Users can obtain this from the provided URL (https://github.com/SegawaTenta/DNAMarkMaker_manual/tree/main/simulation) and modify the values if required for specific analyses.
 
-- Recipe File
+### Recipe File
 
 A txt file contains the options used by the primer design tool, primer3. The default version of this file can be downloaded from the provided URL (https://github.com/SegawaTenta/DNAMarkMaker_manual/blob/main/primer_recipe/primer_recipe.txt), but users can also tailor the values inside to suit specific needs or experimental conditions.
 
-- Restriction enzyme file
+### Restriction enzyme file
 
 A txt file contains space-separated arbitrary the name of restriction enzyme and recognizing sequense (https://github.com/SegawaTenta/DNAMarkMaker_manual/blob/main/restriction_enzyme/restriction_enzyme.txt) and modify the contents if required for specific analyses.
 
 ## The example of execution
 
-- target_SNP_selection
+### target_SNP_selection
 
 ex1) Homozygous plant
 ```
@@ -211,25 +211,25 @@ ex3) Heterozygous plants
               -o example3 \
 ```
 
-- ARMS_preparation
+### ARMS_preparation
 ```
  DNAMarkMaker -w ARMS_preparation \
               -o example1
 ```
 
-- tri_ARMS
+### tri_ARMS
 ```
  DNAMarkMaker -w tri_ARMS \
               -o example1
 ```
 
-- tetra_ARMS
+### tetra_ARMS
 ```
  DNAMarkMaker -w tetra_ARMS \
               -o example1
 ```
 
-- CAPS
+### CAPS
 ```
  DNAMarkMaker -w CAPS \
               -restriction_enzyme downloaded/restriction_enzyme.txt\
