@@ -144,13 +144,14 @@ class CAPS(object):
                                 clear="yes"
                                 out=""
                                 for i in range(match_site.start()+self.s_posi,match_site.end()+self.s_posi):
-                                    if str(i) in self.dict_variant_error:
-                                        if self.dict_variant_error[str(i)].split(":")[0]!="s":
-                                            clear="no"
+                                    
                                     if str(i) in self.dict_depth_error:
                                         clear="no"
                                     if i in snp_posi_dict.keys():
                                         out="{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}".format(self.chr,i,line[i-self.s_posi],enzyme_name,target_base,match_site.start()+self.s_posi,match_site.end()+self.s_posi-1)
+                                    elif str(i) in self.dict_variant_error:
+                                        if self.dict_variant_error[str(i)].split(":")[0]!="s":
+                                            clear="no"
                                 if clear=="yes" and out != "":
                                     output.write("{0}\n".format(out))
             output.close()
