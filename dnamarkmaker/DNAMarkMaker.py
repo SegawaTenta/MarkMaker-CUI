@@ -204,16 +204,16 @@ class DNAMarkMaker(object):
             if not args.first_size:
                 self.first_size_min=100
                 self.first_size_max=500
-            elif "-" in args.first_size:
-                first_size_array=args.first_size.split("-")
+            elif ":" in args.first_size:
+                first_size_array=args.first_size.split(":")
                 self.first_size_min=int(first_size_array[0])
                 self.first_size_max=int(first_size_array[1])
 
             if not args.second_size:
                 self.second_size_min=600
                 self.second_size_max=1000
-            elif "-" in args.second_size:
-                second_size_array=args.second_size.split("-")
+            elif ":" in args.second_size:
+                second_size_array=args.second_size.split(":")
                 self.second_size_min=int(second_size_array[0])
                 self.second_size_max=int(second_size_array[1])
 
@@ -247,8 +247,8 @@ class DNAMarkMaker(object):
             if not args.SNP_dist:
                 self.SNP_dist_min=100
                 self.SNP_dist_max=300
-            elif "-" in args.SNP_dist:
-                SNP_dist_array=args.SNP_dist.split("-")
+            elif ":" in args.SNP_dist:
+                SNP_dist_array=args.SNP_dist.split(":")
                 self.SNP_dist_min=int(SNP_dist_array[0])
                 self.SNP_dist_max=int(SNP_dist_array[1])
 
